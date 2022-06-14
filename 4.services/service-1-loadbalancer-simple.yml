@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: my-web-deployment
+        labels:
+                app: my-k8s-deployment
+spec:
+        replicas: 3
+        selector:
+                matchLabels:
+                        project: myproject-svc
+        template:
+                metadata:
+                        labels:
+                                project: myproject-svc  # Service will look for those PODS Labels!!!
+                spec:
+                        containers:
+                                - name: myproject-svc-web
+                                  image: svdevops07/myk8s_app:v0.1
+                                  ports:
+                                          - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+        name: my-single-pod-service
+        labels:
+                env: prod
+                owner: SejBorodulin
+spec:
+        selector:
+                 project: myproject-svc  # Selecting PODS with those Labels
+        ports:
+                - name      : app-listener
+                  protocol  : TCP
+                  port      : 80  # Port on LoadBalancer
+                  targetPort: 80  # Port on Pod
+        type: LoadBalancer

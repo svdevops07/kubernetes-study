@@ -1,0 +1,22 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+        name: my-web-deployment
+        labels:
+                app : my-k8s-application
+spec:
+        selector:
+                matchLabels:
+                        project:
+                                myproject
+        template:
+                metadata:
+                        labels:
+                                project:
+                                        myproject
+                spec:
+                        containers:
+                                - name : my-project-web
+                                  image: svdevops07/myk8s_app:v0.1
+                                  ports:
+                                          - containerPort: 80

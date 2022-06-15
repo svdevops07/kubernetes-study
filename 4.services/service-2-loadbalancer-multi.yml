@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
         name: my-web-deployment-multi-pod
-        labeks:
+        labels:
                 app:
                         my-k8s-deployment
 spec:

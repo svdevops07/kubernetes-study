@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+        name: app
+        labels:
+                env: test
+                app: main
+                tier: front
+                owner: SerjioBorodulin
+spec:
+        containers:
+                - name: web-server
+                  image: svdevops07/myapp
+                  ports:
+                          - containerPort: 80

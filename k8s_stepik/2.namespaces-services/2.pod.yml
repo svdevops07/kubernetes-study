@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: static-web
+    namespace: my-namespace
+    labels:
+        app: go-web
+spec:
+    containers:
+        - name: web
+          image: svdevops07/myk8s_app:v0.1
+          ports:
+              - name: web
+                containerPort: 8080
+                protocol: TCP
